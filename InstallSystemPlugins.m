@@ -1,6 +1,6 @@
 //
-//  MSFAppDelegate.m
-//  Missing System Folders
+//  InstallSystemPlugins.m
+//  InstallSystemPlugins
 //
 //  Created by Nicolas on 03/01/13.
 //  Copyright (c) 2013 Nicolas Bouilleaud. All rights reserved.
@@ -19,11 +19,16 @@ int main(int argc, char *argv[])
     return EXIT_SUCCESS;
 }
 
+/****************************************************************************/
+#pragma mark -
 
 @implementation InstallSystemPlugins
 
 - (BOOL)application:(NSApplication *)sender openFile:(NSString *)filename
 {
+    
+#pragma mark - Check Params
+
     // Get basic info of opened document
     NSString * extension = [filename pathExtension];
     NSString * uti = (__bridge NSString *)(UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)(extension), NULL));
@@ -47,29 +52,37 @@ int main(int argc, char *argv[])
     // Check wether the document we're opening is already in the destination folder
     installPath = [[installPath stringByExpandingTildeInPath] stringByAppendingPathComponent:[filename lastPathComponent]];
     if([filename isEqualToString:installPath])
-    {
-        NSLog(@"Already installed");
-        return YES;
-    }
+        [NSApp terminate:self];
     
+    
+#pragma mark - Copy
+
     // Copy
     NSError * error;
     NSInteger alertResult;
     BOOL success;
     
-    alertResult = [[NSAlert alertWithMessageText:@"Copy" defaultButton:@"Copy" alternateButton:@"Cancel" otherButton:@"Move" informativeTextWithFormat:@"Copy %@ to %@",filename, installPath] runModal];
+    alertResult = [[NSAlert alertWithMessageText:NSLocalizedString(@"INSTALL_TITLE", nil)
+                                   defaultButton:NSLocalizedString(@"COPY_TO_DESTINATION", nil)
+                                 alternateButton:NSLocalizedString(@"CANCEL", nil)
+                                     otherButton:nil
+                       informativeTextWithFormat:NSLocalizedString(@"INSTALL_MESSAGE_FORMAT_%@_%@", nil),filename, installPath] runModal];
     BOOL shouldCopy = alertResult==NSAlertDefaultReturn;
     if(!shouldCopy)
-        return YES;
+        [NSApp terminate:self];
     
     // Handle "replace existing version"
     success = [[NSFileManager defaultManager] copyItemAtPath:filename toPath:installPath error:&error];
     if(!success && error.code == NSFileWriteFileExistsError)
     {
-        alertResult = [[NSAlert alertWithMessageText:@"File exists" defaultButton:@"Delete and Replace" alternateButton:@"Cancel" otherButton:nil informativeTextWithFormat:@"Delete existing version ?"] runModal];
+        alertResult = [[NSAlert alertWithMessageText:NSLocalizedString(@"REPLACE_TITLE", nil)
+                                       defaultButton:NSLocalizedString(@"REPLACE_BUTTON", nil)
+                                     alternateButton:NSLocalizedString(@"CANCEL", nil)
+                                         otherButton:nil
+                           informativeTextWithFormat:NSLocalizedString(@"REPLACE_MESSAGE_FORMAT", nil)] runModal];
         BOOL shouldReplace = alertResult==NSAlertDefaultReturn;
         if(!shouldReplace)
-            return YES;
+            [NSApp terminate:self];
 
         success = [[NSFileManager defaultManager] removeItemAtPath:installPath error:&error];
         success &= [[NSFileManager defaultManager] copyItemAtPath:filename toPath:installPath error:&error];
@@ -77,6 +90,12 @@ int main(int argc, char *argv[])
     if(!success)
         [[NSAlert alertWithError:error] runModal];
     
+    
+#pragma mark - Done
+    
+    [[NSWorkspace sharedWorkspace] selectFile:installPath inFileViewerRootedAtPath:nil];
+    
+    [NSApp terminate:self];
     return YES;
 }
 

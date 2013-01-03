@@ -5,3 +5,13 @@
   Created by Nicolas on 03/01/13.
   Copyright (c) 2013 Nicolas Bouilleaud. All rights reserved.
 */
+
+"CANCEL" = "Cancel";
+
+"INSTALL_TITLE" = "Install System Plugin";
+"INSTALL_MESSAGE_FORMAT_%@_%@" = "Do you want to copy\n\t%@\nto\n\t%@ ?";
+"COPY_TO_DESTINATION" = "Install";
+
+"REPLACE_TITLE" = "A previous version of the same file already exists.";
+"REPLACE_MESSAGE_FORMAT" = "Do you want to delete the existing file and replace it with the new version ?";
+"REPLACE_BUTTON" = "Replace Existing File";

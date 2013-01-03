@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Install System Plugins.xcodeproj">
+      location = "self:InstallSystemPlugins.xcodeproj">
    </FileRef>
 </Workspace>

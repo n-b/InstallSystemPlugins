@@ -5,3 +5,13 @@
   Created by Nicolas on 03/01/13.
   Copyright (c) 2013 Nicolas Bouilleaud. All rights reserved.
 */
+
+"CANCEL" = "Annuler";
+
+"INSTALL_TITLE" = "Installer le composant";
+"INSTALL_MESSAGE_FORMAT_%@_%@" = "Voulez-vous copier\n\t%@\nvers\n\t%@ ?";
+"COPY_TO_DESTINATION" = "Installer";
+
+"REPLACE_TITLE" = "Une version précédente du fichier est déjà présente.";
+"REPLACE_MESSAGE_FORMAT" = "Voulez-vous supprimer le fichier existant et le remplacer par la nouvelle version ?";
+"REPLACE_BUTTON" = "Supprimer et remplacer";

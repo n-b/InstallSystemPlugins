@@ -2,3 +2,7 @@
 
 "CFBundleName" = "Install System Plugin";
 "CFBundleDisplayName" = "Install System Plugin";
+"NSHumanReadableCopyright" = "© Nicolas Bouilleaud, 2013.
+A long time ago, in System 7, one could double-click a system extension or a plugin, and the Finder would simply copy it to the correct location in the System Folder.
+This tool is an attempt to recreate this.
+The icon is the color version of the “Happy Mac” by Susan Kare.";

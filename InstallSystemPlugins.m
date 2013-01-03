@@ -32,6 +32,8 @@ int main(int argc, char *argv[])
     // Get basic info of opened document
     NSString * extension = [filename pathExtension];
     NSString * uti = (__bridge NSString *)(UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)(extension), NULL));
+    NSString * typeDescription = (__bridge NSString *)(UTTypeCopyDescription((__bridge CFStringRef)(uti)));
+    NSString * displayName = [[[NSFileManager defaultManager] displayNameAtPath:filename] stringByDeletingPathExtension];
     
     // Find document type declaration
     NSArray * types = [[NSBundle mainBundle] infoDictionary][@"CFBundleDocumentTypes"];
@@ -62,11 +64,11 @@ int main(int argc, char *argv[])
     NSInteger alertResult;
     BOOL success;
     
-    alertResult = [[NSAlert alertWithMessageText:NSLocalizedString(@"INSTALL_TITLE", nil)
-                                   defaultButton:NSLocalizedString(@"COPY_TO_DESTINATION", nil)
-                                 alternateButton:NSLocalizedString(@"CANCEL", nil)
+    alertResult = [[NSAlert alertWithMessageText:[NSString stringWithFormat:NSLocalizedString(@"INSTALL_PLUGIN_%@_TYPE_%@", nil),displayName, typeDescription]
+                                   defaultButton:[NSString stringWithFormat:NSLocalizedString(@"BUTTON_INSTALL_%@", nil),displayName]
+                                 alternateButton:NSLocalizedString(@"CANCEL_BUTTON", nil)
                                      otherButton:nil
-                       informativeTextWithFormat:NSLocalizedString(@"INSTALL_MESSAGE_FORMAT_%@_%@", nil),filename, installPath] runModal];
+                       informativeTextWithFormat:NSLocalizedString(@"FILE_WILL_BE_MOVED_TO_%@", nil),filename, installPath] runModal];
     BOOL shouldCopy = alertResult==NSAlertDefaultReturn;
     if(!shouldCopy)
         [NSApp terminate:self];
@@ -75,11 +77,11 @@ int main(int argc, char *argv[])
     success = [[NSFileManager defaultManager] copyItemAtPath:filename toPath:installPath error:&error];
     if(!success && error.code == NSFileWriteFileExistsError)
     {
-        alertResult = [[NSAlert alertWithMessageText:NSLocalizedString(@"REPLACE_TITLE", nil)
+        alertResult = [[NSAlert alertWithMessageText:[NSString stringWithFormat:NSLocalizedString(@"PREVIOUS_VERSION_OF_%@_ALREADY_INSTALLED", nil),displayName]
                                        defaultButton:NSLocalizedString(@"REPLACE_BUTTON", nil)
-                                     alternateButton:NSLocalizedString(@"CANCEL", nil)
+                                     alternateButton:NSLocalizedString(@"CANCEL_BUTTON", nil)
                                          otherButton:nil
-                           informativeTextWithFormat:NSLocalizedString(@"REPLACE_MESSAGE_FORMAT", nil)] runModal];
+                           informativeTextWithFormat:NSLocalizedString(@"DO_YOU_WANT_TO_REPLACE", nil)] runModal];
         BOOL shouldReplace = alertResult==NSAlertDefaultReturn;
         if(!shouldReplace)
             [NSApp terminate:self];

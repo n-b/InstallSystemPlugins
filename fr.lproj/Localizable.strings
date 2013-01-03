@@ -6,12 +6,12 @@
   Copyright (c) 2013 Nicolas Bouilleaud. All rights reserved.
 */
 
-"CANCEL" = "Annuler";
+"CANCEL_BUTTON" = "Annuler";
 
-"INSTALL_TITLE" = "Installer le composant";
-"INSTALL_MESSAGE_FORMAT_%@_%@" = "Voulez-vous copier\n\t%@\nvers\n\t%@ ?";
-"COPY_TO_DESTINATION" = "Installer";
+"INSTALL_PLUGIN_%@_TYPE_%@" = "Installer « %@ » (%@)";
+"FILE_WILL_BE_MOVED_TO_%@" = "Le fichier sera déplacé dans le dossier\n« %@ ».";
+"BUTTON_INSTALL_%@" = "Installer “%@”";
 
-"REPLACE_TITLE" = "Une version précédente du fichier est déjà présente.";
-"REPLACE_MESSAGE_FORMAT" = "Voulez-vous supprimer le fichier existant et le remplacer par la nouvelle version ?";
-"REPLACE_BUTTON" = "Supprimer et remplacer";
+"PREVIOUS_VERSION_OF_%@_ALREADY_INSTALLED" = "Une version précédente de « %@ » est déjà installée.";
+"DO_YOU_WANT_TO_REPLACE" = "Voulez-vous la remplacer par la nouvelle version ?";
+"REPLACE_BUTTON" = "Remplacer le fichier existant";

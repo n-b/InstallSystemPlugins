@@ -2,3 +2,7 @@
 
 "CFBundleName" = "Installer le composant";
 "CFBundleDisplayName" = "Installer le composant";
+"NSHumanReadableCopyright" = "© Nicolas Bouilleaud, 2013.
+Il y a très longtemps, à l’époque de Système 7, il suffisait de double-cliquer sur une extension système ou un plugin pour que le Finder le copie au bon endroit dans le Dossier Système.
+Cette appli essaye de recréer cette fonctionnalité.
+L’icône est la version couleur du “Happy Mac” de Susan Kare.";

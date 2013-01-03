@@ -6,12 +6,12 @@
   Copyright (c) 2013 Nicolas Bouilleaud. All rights reserved.
 */
 
-"CANCEL" = "Cancel";
+"CANCEL_BUTTON" = "Cancel";
 
-"INSTALL_TITLE" = "Install System Plugin";
-"INSTALL_MESSAGE_FORMAT_%@_%@" = "Do you want to copy\n\t%@\nto\n\t%@ ?";
-"COPY_TO_DESTINATION" = "Install";
+"INSTALL_PLUGIN_%@_TYPE_%@" = "Install “%@” (%@)";
+"FILE_WILL_BE_MOVED_TO_%@" = "The file will be moved in the folder\n“%@”.";
+"BUTTON_INSTALL_%@" = "Install “%@”";
 
-"REPLACE_TITLE" = "A previous version of the same file already exists.";
-"REPLACE_MESSAGE_FORMAT" = "Do you want to delete the existing file and replace it with the new version ?";
+"PREVIOUS_VERSION_OF_%@_ALREADY_INSTALLED" = "A previous version of “%@” is already installed.";
+"DO_YOU_WANT_TO_REPLACE" = "Do you want to replace it with the new version ?";
 "REPLACE_BUTTON" = "Replace Existing File";

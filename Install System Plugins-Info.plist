@@ -7,8 +7,6 @@
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
-			<key>MSFInstallPath</key>
-			<string>~/Library/ColorPickers/</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>colorPicker</string>
@@ -23,10 +21,10 @@
 			</array>
 			<key>LSTypeIsPackage</key>
 			<true/>
+			<key>MSFInstallPath</key>
+			<string>~/Library/ColorPickers/</string>
 		</dict>
 		<dict>
-			<key>MSFInstallPath</key>
-			<string>~/Library/QuickLook/</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>qlgenerator</string>
@@ -41,10 +39,10 @@
 			</array>
 			<key>LSTypeIsPackage</key>
 			<true/>
+			<key>MSFInstallPath</key>
+			<string>~/Library/QuickLook/</string>
 		</dict>
 		<dict>
-			<key>MSFInstallPath</key>
-			<string>~/Library/Developer/Xcode/UserData/CodeSnippets/</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>codesnippet</string>
@@ -57,10 +55,10 @@
 			<array>
 				<string>com.apple.xcode.codesnippet</string>
 			</array>
+			<key>MSFInstallPath</key>
+			<string>~/Library/Developer/Xcode/UserData/CodeSnippets/</string>
 		</dict>
 		<dict>
-			<key>MSFInstallPath</key>
-			<string>~/Library/Developer/Xcode/UserData/FontAndColorThemes/</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>dvtcolortheme</string>
@@ -73,17 +71,21 @@
 			<array>
 				<string>com.apple.xcode.colortheme</string>
 			</array>
+			<key>MSFInstallPath</key>
+			<string>~/Library/Developer/Xcode/UserData/FontAndColorThemes/</string>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
-	<string></string>
+	<string>HappyMac</string>
 	<key>CFBundleIdentifier</key>
 	<string>im.n-b.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
+	<string>${PRODUCT_NAME}</string>
+	<key>CFBundleDisplayName</key>
 	<string>${PRODUCT_NAME}</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
@@ -97,12 +99,12 @@
 	<string>public.app-category.developer-tools</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>${MACOSX_DEPLOYMENT_TARGET}</string>
+	<key>LSUIElement</key>
+	<true/>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2013 Nicolas Bouilleaud. All rights reserved.</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
-	<key>LSUIElement</key>
-	<true/>
 	<key>UTImportedTypeDeclarations</key>
 	<array>
 		<dict>

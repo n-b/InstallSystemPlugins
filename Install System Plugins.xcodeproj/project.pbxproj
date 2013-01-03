@@ -10,6 +10,8 @@
 		37BF7FFF16957B5700FED27F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37BF7FFE16957B5700FED27F /* Cocoa.framework */; };
 		37BF800916957B5700FED27F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 37BF800716957B5700FED27F /* InfoPlist.strings */; };
 		37BF801216957B5700FED27F /* InstallSystemPlugins.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BF801116957B5700FED27F /* InstallSystemPlugins.m */; };
+		37BF802016959E7700FED27F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 37BF802216959E7700FED27F /* Localizable.strings */; };
+		37BF80251695A1AE00FED27F /* HappyMac.icns in Resources */ = {isa = PBXBuildFile; fileRef = 37BF80241695A1AE00FED27F /* HappyMac.icns */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +22,10 @@
 		37BF800616957B5700FED27F /* Install System Plugins-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Install System Plugins-Info.plist"; sourceTree = "<group>"; };
 		37BF800816957B5700FED27F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		37BF801116957B5700FED27F /* InstallSystemPlugins.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InstallSystemPlugins.m; sourceTree = "<group>"; };
+		37BF801F16959E7200FED27F /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		37BF802116959E7700FED27F /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		37BF802316959E7A00FED27F /* fr */ = {isa = PBXFileReference; lastKnownFileType = file; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		37BF80241695A1AE00FED27F /* HappyMac.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = HappyMac.icns; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,7 +44,10 @@
 			isa = PBXGroup;
 			children = (
 				37BF801116957B5700FED27F /* InstallSystemPlugins.m */,
-				37BF800516957B5700FED27F /* Supporting Files */,
+				37BF800616957B5700FED27F /* Install System Plugins-Info.plist */,
+				37BF80241695A1AE00FED27F /* HappyMac.icns */,
+				37BF800716957B5700FED27F /* InfoPlist.strings */,
+				37BF802216959E7700FED27F /* Localizable.strings */,
 				37BF7FFD16957B5700FED27F /* Frameworks */,
 				37BF7FFC16957B5700FED27F /* Products */,
 			);
@@ -60,15 +69,6 @@
 				37BF800316957B5700FED27F /* Foundation.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		37BF800516957B5700FED27F /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				37BF800616957B5700FED27F /* Install System Plugins-Info.plist */,
-				37BF800716957B5700FED27F /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -107,6 +107,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				fr,
 			);
 			mainGroup = 37BF7FF216957B5700FED27F;
 			productRefGroup = 37BF7FFC16957B5700FED27F /* Products */;
@@ -124,6 +125,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				37BF800916957B5700FED27F /* InfoPlist.strings in Resources */,
+				37BF802016959E7700FED27F /* Localizable.strings in Resources */,
+				37BF80251695A1AE00FED27F /* HappyMac.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,8 +148,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				37BF800816957B5700FED27F /* en */,
+				37BF801F16959E7200FED27F /* fr */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		37BF802216959E7700FED27F /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				37BF802116959E7700FED27F /* en */,
+				37BF802316959E7A00FED27F /* fr */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -214,9 +227,11 @@
 		37BF801916957B5700FED27F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Nicolas Bouilleaud";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "Install System Plugins-Info.plist";
 				PRODUCT_NAME = "Install System Plugins";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -224,9 +239,11 @@
 		37BF801A16957B5700FED27F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Nicolas Bouilleaud";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "Install System Plugins-Info.plist";
 				PRODUCT_NAME = "Install System Plugins";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

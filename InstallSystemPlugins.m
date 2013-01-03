@@ -104,8 +104,8 @@ int main(int argc, char *argv[])
             }
         }];
         
-        _installFolder = _documentTypeDictionary[@"ISPInstallPath"];
-        _installPath = [[_installFolder stringByExpandingTildeInPath] stringByAppendingPathComponent:[_filename lastPathComponent]];
+        _installFolder = [_documentTypeDictionary[@"ISPInstallPath"] stringByExpandingTildeInPath];
+        _installPath = [_installFolder stringByAppendingPathComponent:[_filename lastPathComponent]];
 
         if([_installFolder length]==0)
             return nil;
@@ -143,7 +143,7 @@ int main(int argc, char *argv[])
         }
         
         // Move
-        success = [[NSFileManager defaultManager] moveItemAtPath:_filename toPath:_installPath error:&error];
+        success = [self moveOrCopy:&error];
     }
     
     // File exists "now" : move failed, or we didn't attempt it
@@ -158,7 +158,7 @@ int main(int argc, char *argv[])
         }
         
         success = [[NSFileManager defaultManager] removeItemAtPath:_installPath error:&error];
-        success &= [[NSFileManager defaultManager] moveItemAtPath:_filename toPath:_installPath error:&error];
+        success &= [self moveOrCopy:&error];
     }
     
     // End with failure
@@ -178,6 +178,17 @@ int main(int argc, char *argv[])
     
     [_delegate installFinished:self];
     return;
+}
+
+- (BOOL) moveOrCopy:(NSError**)error
+{
+    BOOL res = YES;
+    res &= [[NSFileManager defaultManager] createDirectoryAtPath:_installFolder withIntermediateDirectories:YES attributes:nil error:error];
+    if([[NSFileManager defaultManager] isDeletableFileAtPath:_filename])
+        res &= [[NSFileManager defaultManager] moveItemAtPath:_filename toPath:_installPath error:error];
+    else
+        res &= [[NSFileManager defaultManager] copyItemAtPath:_filename toPath:_installPath error:error];
+    return res;
 }
 
 /****************************************************************************/
@@ -224,7 +235,7 @@ int main(int argc, char *argv[])
         case NSAlertOtherReturn: [_delegate installFinished:self];
             return NO;
         default:
-            return YES;;
+            return YES;
     }
 }
 
@@ -263,7 +274,7 @@ int main(int argc, char *argv[])
     NSDictionary * snippet = [NSDictionary dictionaryWithContentsOfFile:_filename];
     NSString * uuid = snippet[@"IDECodeSnippetIdentifier"];
     if(![[[_filename lastPathComponent] stringByDeletingPathExtension] isEqualToString:uuid])
-        _installPath = [[[_installFolder stringByExpandingTildeInPath] stringByAppendingPathComponent:uuid] stringByAppendingPathExtension:[_filename pathExtension]];
+        _installPath = [[_installFolder stringByAppendingPathComponent:uuid] stringByAppendingPathExtension:[_filename pathExtension]];
 }
 
 @end

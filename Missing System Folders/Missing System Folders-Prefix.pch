@@ -1,7 +1,0 @@
-//
-// Prefix header for all source files of the 'Missing System Folders' target in the 'Missing System Folders' project
-//
-
-#ifdef __OBJC__
-    #import <Cocoa/Cocoa.h>
-#endif

@@ -9,26 +9,17 @@
 /* Begin PBXBuildFile section */
 		37BF7FFF16957B5700FED27F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37BF7FFE16957B5700FED27F /* Cocoa.framework */; };
 		37BF800916957B5700FED27F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 37BF800716957B5700FED27F /* InfoPlist.strings */; };
-		37BF800B16957B5700FED27F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BF800A16957B5700FED27F /* main.m */; };
-		37BF800F16957B5700FED27F /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 37BF800D16957B5700FED27F /* Credits.rtf */; };
-		37BF801216957B5700FED27F /* MSFAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BF801116957B5700FED27F /* MSFAppDelegate.m */; };
-		37BF801516957B5700FED27F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37BF801316957B5700FED27F /* MainMenu.xib */; };
+		37BF801216957B5700FED27F /* InstallSystemPlugins.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BF801116957B5700FED27F /* InstallSystemPlugins.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		37BF7FFB16957B5700FED27F /* Missing System Folders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Missing System Folders.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		37BF7FFB16957B5700FED27F /* Install System Plugins.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Install System Plugins.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		37BF7FFE16957B5700FED27F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		37BF800116957B5700FED27F /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		37BF800216957B5700FED27F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		37BF800316957B5700FED27F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		37BF800616957B5700FED27F /* Missing System Folders-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Missing System Folders-Info.plist"; sourceTree = "<group>"; };
+		37BF800616957B5700FED27F /* Install System Plugins-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Install System Plugins-Info.plist"; sourceTree = "<group>"; };
 		37BF800816957B5700FED27F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		37BF800A16957B5700FED27F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		37BF800C16957B5700FED27F /* Missing System Folders-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Missing System Folders-Prefix.pch"; sourceTree = "<group>"; };
-		37BF800E16957B5700FED27F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		37BF801016957B5700FED27F /* MSFAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MSFAppDelegate.h; sourceTree = "<group>"; };
-		37BF801116957B5700FED27F /* MSFAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MSFAppDelegate.m; sourceTree = "<group>"; };
-		37BF801416957B5700FED27F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		37BF801116957B5700FED27F /* InstallSystemPlugins.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InstallSystemPlugins.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,7 +37,8 @@
 		37BF7FF216957B5700FED27F = {
 			isa = PBXGroup;
 			children = (
-				37BF800416957B5700FED27F /* Missing System Folders */,
+				37BF801116957B5700FED27F /* InstallSystemPlugins.m */,
+				37BF800516957B5700FED27F /* Supporting Files */,
 				37BF7FFD16957B5700FED27F /* Frameworks */,
 				37BF7FFC16957B5700FED27F /* Products */,
 			);
@@ -55,7 +47,7 @@
 		37BF7FFC16957B5700FED27F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				37BF7FFB16957B5700FED27F /* Missing System Folders.app */,
+				37BF7FFB16957B5700FED27F /* Install System Plugins.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -64,40 +56,17 @@
 			isa = PBXGroup;
 			children = (
 				37BF7FFE16957B5700FED27F /* Cocoa.framework */,
-				37BF800016957B5700FED27F /* Other Frameworks */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		37BF800016957B5700FED27F /* Other Frameworks */ = {
-			isa = PBXGroup;
-			children = (
 				37BF800116957B5700FED27F /* AppKit.framework */,
-				37BF800216957B5700FED27F /* CoreData.framework */,
 				37BF800316957B5700FED27F /* Foundation.framework */,
 			);
-			name = "Other Frameworks";
-			sourceTree = "<group>";
-		};
-		37BF800416957B5700FED27F /* Missing System Folders */ = {
-			isa = PBXGroup;
-			children = (
-				37BF801016957B5700FED27F /* MSFAppDelegate.h */,
-				37BF801116957B5700FED27F /* MSFAppDelegate.m */,
-				37BF801316957B5700FED27F /* MainMenu.xib */,
-				37BF800516957B5700FED27F /* Supporting Files */,
-			);
-			path = "Missing System Folders";
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		37BF800516957B5700FED27F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				37BF800616957B5700FED27F /* Missing System Folders-Info.plist */,
+				37BF800616957B5700FED27F /* Install System Plugins-Info.plist */,
 				37BF800716957B5700FED27F /* InfoPlist.strings */,
-				37BF800A16957B5700FED27F /* main.m */,
-				37BF800C16957B5700FED27F /* Missing System Folders-Prefix.pch */,
-				37BF800D16957B5700FED27F /* Credits.rtf */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -105,9 +74,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		37BF7FFA16957B5700FED27F /* Missing System Folders */ = {
+		37BF7FFA16957B5700FED27F /* Install System Plugins */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 37BF801816957B5700FED27F /* Build configuration list for PBXNativeTarget "Missing System Folders" */;
+			buildConfigurationList = 37BF801816957B5700FED27F /* Build configuration list for PBXNativeTarget "Install System Plugins" */;
 			buildPhases = (
 				37BF7FF716957B5700FED27F /* Sources */,
 				37BF7FF816957B5700FED27F /* Frameworks */,
@@ -117,9 +86,9 @@
 			);
 			dependencies = (
 			);
-			name = "Missing System Folders";
+			name = "Install System Plugins";
 			productName = "Missing System Folders";
-			productReference = 37BF7FFB16957B5700FED27F /* Missing System Folders.app */;
+			productReference = 37BF7FFB16957B5700FED27F /* Install System Plugins.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -132,7 +101,7 @@
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Nicolas Bouilleaud";
 			};
-			buildConfigurationList = 37BF7FF616957B5700FED27F /* Build configuration list for PBXProject "Missing System Folders" */;
+			buildConfigurationList = 37BF7FF616957B5700FED27F /* Build configuration list for PBXProject "Install System Plugins" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -144,7 +113,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				37BF7FFA16957B5700FED27F /* Missing System Folders */,
+				37BF7FFA16957B5700FED27F /* Install System Plugins */,
 			);
 		};
 /* End PBXProject section */
@@ -155,8 +124,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				37BF800916957B5700FED27F /* InfoPlist.strings in Resources */,
-				37BF800F16957B5700FED27F /* Credits.rtf in Resources */,
-				37BF801516957B5700FED27F /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,8 +134,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37BF800B16957B5700FED27F /* main.m in Sources */,
-				37BF801216957B5700FED27F /* MSFAppDelegate.m in Sources */,
+				37BF801216957B5700FED27F /* InstallSystemPlugins.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,22 +147,6 @@
 				37BF800816957B5700FED27F /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		37BF800D16957B5700FED27F /* Credits.rtf */ = {
-			isa = PBXVariantGroup;
-			children = (
-				37BF800E16957B5700FED27F /* en */,
-			);
-			name = Credits.rtf;
-			sourceTree = "<group>";
-		};
-		37BF801316957B5700FED27F /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				37BF801416957B5700FED27F /* en */,
-			);
-			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -265,10 +215,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Missing System Folders/Missing System Folders-Prefix.pch";
-				INFOPLIST_FILE = "Missing System Folders/Missing System Folders-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "Install System Plugins-Info.plist";
+				PRODUCT_NAME = "Install System Plugins";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -277,10 +225,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Missing System Folders/Missing System Folders-Prefix.pch";
-				INFOPLIST_FILE = "Missing System Folders/Missing System Folders-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "Install System Plugins-Info.plist";
+				PRODUCT_NAME = "Install System Plugins";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -288,7 +234,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		37BF7FF616957B5700FED27F /* Build configuration list for PBXProject "Missing System Folders" */ = {
+		37BF7FF616957B5700FED27F /* Build configuration list for PBXProject "Install System Plugins" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				37BF801616957B5700FED27F /* Debug */,
@@ -297,7 +243,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		37BF801816957B5700FED27F /* Build configuration list for PBXNativeTarget "Missing System Folders" */ = {
+		37BF801816957B5700FED27F /* Build configuration list for PBXNativeTarget "Install System Plugins" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				37BF801916957B5700FED27F /* Debug */,

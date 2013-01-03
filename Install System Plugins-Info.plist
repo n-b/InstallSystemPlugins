@@ -7,6 +7,8 @@
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
+			<key>MSFInstallPath</key>
+			<string>~/Library/ColorPickers/</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>colorPicker</string>
@@ -23,6 +25,8 @@
 			<true/>
 		</dict>
 		<dict>
+			<key>MSFInstallPath</key>
+			<string>~/Library/QuickLook/</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>qlgenerator</string>
@@ -39,6 +43,8 @@
 			<true/>
 		</dict>
 		<dict>
+			<key>MSFInstallPath</key>
+			<string>~/Library/Developer/Xcode/UserData/CodeSnippets/</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>codesnippet</string>
@@ -53,6 +59,8 @@
 			</array>
 		</dict>
 		<dict>
+			<key>MSFInstallPath</key>
+			<string>~/Library/Developer/Xcode/UserData/FontAndColorThemes/</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>dvtcolortheme</string>
@@ -91,10 +99,10 @@
 	<string>${MACOSX_DEPLOYMENT_TARGET}</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2013 Nicolas Bouilleaud. All rights reserved.</string>
-	<key>NSMainNibFile</key>
-	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>LSUIElement</key>
+	<true/>
 	<key>UTImportedTypeDeclarations</key>
 	<array>
 		<dict>

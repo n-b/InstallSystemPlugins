@@ -277,4 +277,12 @@ int main(int argc, char *argv[])
         _installPath = [[_installFolder stringByAppendingPathComponent:uuid] stringByAppendingPathExtension:[_filename pathExtension]];
 }
 
+- (void) restartMailApp
+{
+    NSAppleScript * script = [[NSAppleScript alloc] initWithSource:@"tell application id \"com.apple.mail\"\nquit\nactivate\nend tell"];
+    NSDictionary * error;
+    [script executeAndReturnError:&error];
+    NSLog(@"script = %@",error);
+}
+
 @end

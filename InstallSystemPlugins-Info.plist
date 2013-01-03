@@ -91,6 +91,8 @@
 			<string>Viewer</string>
 			<key>ISPInstallPath</key>
 			<string>~/Library/Mail/Bundles/</string>
+			<key>ISPPostflight</key>
+			<string>restartMailApp</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>com.apple.mail.plugin</string>

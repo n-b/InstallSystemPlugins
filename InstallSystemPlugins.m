@@ -77,6 +77,7 @@ int main(int argc, char *argv[])
     id<PluginInstallDelegate> _delegate;
     NSString * _filename;
     NSString * _uti;
+    NSDictionary * _documentTypeDictionary;
     NSString * _installFolder;
     NSString * _installPath;
 }
@@ -95,17 +96,17 @@ int main(int argc, char *argv[])
         
         // Find document type declaration
         NSArray * types = [[NSBundle mainBundle] infoDictionary][@"CFBundleDocumentTypes"];
-        __block NSDictionary * typeDict = nil;
         [types enumerateObjectsUsingBlock:^(NSDictionary* obj, NSUInteger idx, BOOL *stop) {
             if([obj[@"LSItemContentTypes"] containsObject:_uti])
             {
-                typeDict = obj;
+                _documentTypeDictionary = obj;
                 *stop = YES;
             }
         }];
         
-        _installFolder = typeDict[@"ISPInstallPath"];
-        
+        _installFolder = _documentTypeDictionary[@"ISPInstallPath"];
+        _installPath = [[_installFolder stringByExpandingTildeInPath] stringByAppendingPathComponent:[_filename lastPathComponent]];
+
         if([_installFolder length]==0)
             return nil;
         
@@ -115,8 +116,9 @@ int main(int argc, char *argv[])
 
 - (void) install
 {
+    [self preflight];
+    
     // Check wether the document we're opening is already in the destination folder
-    _installPath = [[_installFolder stringByExpandingTildeInPath] stringByAppendingPathComponent:[_filename lastPathComponent]];
     if([_filename isEqualToString:_installPath])
     {
         [_delegate installFinished:self];
@@ -166,6 +168,9 @@ int main(int argc, char *argv[])
         [_delegate installFinished:self];
         return;
     }
+    
+    // Post-process
+    [self postflight];
     
 #pragma mark - Done
     
@@ -226,6 +231,39 @@ int main(int argc, char *argv[])
 - (BOOL)alertShowHelp:(NSAlert *)alert
 {
     return [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[[NSBundle mainBundle] infoDictionary][@"ISPHelpURL"]]];
+}
+
+/****************************************************************************/
+#pragma mark - Pre-Postflight
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+- (void) preflight
+{
+    SEL selector = NSSelectorFromString(_documentTypeDictionary[@"ISPPreflight"]);
+    if([self respondsToSelector:selector])
+       [self performSelector:selector withObject:nil];
+}
+
+- (void) postflight
+{
+    SEL selector = NSSelectorFromString(_documentTypeDictionary[@"ISPPostflight"]);
+    if([self respondsToSelector:selector])
+        [self performSelector:selector withObject:nil];
+}
+#pragma clang diagnostic pop
+
+- (void) restartQLManage
+{
+    system("qlmanage -r");
+}
+
+- (void) fixupCodesnippetFilename
+{
+    NSDictionary * snippet = [NSDictionary dictionaryWithContentsOfFile:_filename];
+    NSString * uuid = snippet[@"IDECodeSnippetIdentifier"];
+    if(![[[_filename lastPathComponent] stringByDeletingPathExtension] isEqualToString:uuid])
+        _installPath = [[[_installFolder stringByExpandingTildeInPath] stringByAppendingPathComponent:uuid] stringByAppendingPathExtension:[_filename pathExtension]];
 }
 
 @end

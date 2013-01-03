@@ -37,6 +37,8 @@
 			<string>Viewer</string>
 			<key>ISPInstallPath</key>
 			<string>~/Library/QuickLook/</string>
+			<key>ISPPostflight</key>
+			<string>restartQLManage</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>com.apple.quicklook-generator</string>
@@ -55,6 +57,8 @@
 			<string>Viewer</string>
 			<key>ISPInstallPath</key>
 			<string>~/Library/Developer/Xcode/UserData/CodeSnippets/</string>
+			<key>ISPPreflight</key>
+			<string>fixupCodesnippetFilename</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>com.apple.xcode.codesnippet</string>

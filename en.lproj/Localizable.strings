@@ -9,9 +9,10 @@
 "CANCEL_BUTTON" = "Cancel";
 
 "INSTALL_PLUGIN_%@_TYPE_%@" = "Install “%@” (%@)";
-"FILE_WILL_BE_MOVED_TO_%@" = "The file will be moved in the folder\n“%@”.";
+"FILE_WILL_BE_MOVED_TO_%@" = "The file will be moved to\n“%@”.";
 "BUTTON_INSTALL_%@" = "Install “%@”";
+"BUTTON_REVEAL_DESTINATION" = "Reveal destination";
 
-"PREVIOUS_VERSION_OF_%@_ALREADY_INSTALLED" = "A previous version of “%@” is already installed.";
-"DO_YOU_WANT_TO_REPLACE" = "Do you want to replace it with the new version ?";
-"REPLACE_BUTTON" = "Replace Existing File";
+"PREVIOUS_VERSION_OF_%@_OF_TYPE_%@_ALREADY_INSTALLED" = "A version of “%@” (%@) is already installed.";
+"DO_YOU_WANT_TO_REPLACE_%@" = "Do you want to replace this file ?\n“%@”";
+"BUTTON_REPLACE_%@" = "Replace “%@”";

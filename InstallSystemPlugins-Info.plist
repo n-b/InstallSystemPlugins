@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>${PRODUCT_NAME}</string>
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
@@ -15,14 +17,14 @@
 			<string>Color Picker Plug-in</string>
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
+			<key>ISPInstallPath</key>
+			<string>~/Library/ColorPickers/</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>com.apple.colorpicker</string>
 			</array>
 			<key>LSTypeIsPackage</key>
 			<true/>
-			<key>MSFInstallPath</key>
-			<string>~/Library/ColorPickers/</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -33,14 +35,14 @@
 			<string>Quick Look Generator</string>
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
+			<key>ISPInstallPath</key>
+			<string>~/Library/QuickLook/</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>com.apple.quicklook-generator</string>
 			</array>
 			<key>LSTypeIsPackage</key>
 			<true/>
-			<key>MSFInstallPath</key>
-			<string>~/Library/QuickLook/</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -51,12 +53,12 @@
 			<string>Xcode Code Snippet</string>
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
+			<key>ISPInstallPath</key>
+			<string>~/Library/Developer/Xcode/UserData/CodeSnippets/</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>com.apple.xcode.codesnippet</string>
 			</array>
-			<key>MSFInstallPath</key>
-			<string>~/Library/Developer/Xcode/UserData/CodeSnippets/</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -67,12 +69,12 @@
 			<string>Xcode Font and Color Theme</string>
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
+			<key>ISPInstallPath</key>
+			<string>~/Library/Developer/Xcode/UserData/FontAndColorThemes/</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>com.apple.xcode.colortheme</string>
 			</array>
-			<key>MSFInstallPath</key>
-			<string>~/Library/Developer/Xcode/UserData/FontAndColorThemes/</string>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
@@ -85,8 +87,6 @@
 	<string>6.0</string>
 	<key>CFBundleName</key>
 	<string>${PRODUCT_NAME}</string>
-	<key>CFBundleDisplayName</key>
-	<string>${PRODUCT_NAME}</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -95,6 +95,8 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>ISPHelpURL</key>
+	<string>http://github.com/n-b</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.developer-tools</string>
 	<key>LSMinimumSystemVersion</key>
@@ -108,6 +110,8 @@
 	<key>UTImportedTypeDeclarations</key>
 	<array>
 		<dict>
+			<key>CFBundleIdentifier</key>
+			<string>com.apple.finder</string>
 			<key>UTTypeConformsTo</key>
 			<array>
 				<string>com.apple.package</string>
@@ -125,6 +129,8 @@
 			</dict>
 		</dict>
 		<dict>
+			<key>CFBundleIdentifier</key>
+			<string>com.apple.finder</string>
 			<key>UTTypeConformsTo</key>
 			<array>
 				<string>com.apple.plugin</string>
@@ -142,6 +148,8 @@
 			</dict>
 		</dict>
 		<dict>
+			<key>CFBundleIdentifier</key>
+			<string>com.apple.dt.Xcode</string>
 			<key>UTTypeConformsTo</key>
 			<array>
 				<string>com.apple.property-list</string>
@@ -159,6 +167,8 @@
 			</dict>
 		</dict>
 		<dict>
+			<key>CFBundleIdentifier</key>
+			<string>com.apple.dt.Xcode</string>
 			<key>UTTypeConformsTo</key>
 			<array>
 				<string>com.apple.property-list</string>

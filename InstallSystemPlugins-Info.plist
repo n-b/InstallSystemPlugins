@@ -80,6 +80,22 @@
 				<string>com.apple.xcode.colortheme</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>mailbundle</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>Mail Plugin</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>ISPInstallPath</key>
+			<string>~/Library/Mail/Bundles/</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.apple.mail.plugin</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
@@ -186,6 +202,25 @@
 				<key>public.filename-extension</key>
 				<array>
 					<string>dvtcolortheme</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>CFBundleIdentifier</key>
+			<string>com.apple.mail</string>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>com.apple.package</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Mail Plugin</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.apple.mail.plugin</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>mailbundle</string>
 				</array>
 			</dict>
 		</dict>

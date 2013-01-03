@@ -8,21 +8,24 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface InstallSystemPlugins : NSObject <NSApplicationDelegate>
+@protocol PluginInstallDelegate;
+@interface PluginInstall : NSObject <NSAlertDelegate>
+- (id) initWithFile:(NSString*)filename delegate:(id<PluginInstallDelegate>)delegate;
+- (void) install;
+@end
+@protocol PluginInstallDelegate
+- (void) installFinished:(PluginInstall*)install;
 @end
 
-@interface NSAlert (InstallSystemPlugins) <NSAlertDelegate>
-+ (NSInteger) confirmMoveWithMessage:(NSString*)messageText
-                     informativeText:(NSString*)informativeText
-                       defaultButton:(NSString*)defaultButton
-                            filename:(NSString*)filename
-                                 uti:(NSString*)uti
-                         installPath:(NSString*)installPath;
+@interface AppDelegate : NSObject <NSApplicationDelegate, PluginInstallDelegate>
 @end
+
+/****************************************************************************/
+#pragma mark -
 
 int main(int argc, char *argv[])
 {
-    NS_VALID_UNTIL_END_OF_SCOPE InstallSystemPlugins * delegate = [InstallSystemPlugins new];
+    NS_VALID_UNTIL_END_OF_SCOPE AppDelegate * delegate = [AppDelegate new];
     [NSApplication sharedApplication].delegate = delegate;
     [NSApp run];
     return EXIT_SUCCESS;
@@ -31,116 +34,165 @@ int main(int argc, char *argv[])
 /****************************************************************************/
 #pragma mark -
 
-@implementation InstallSystemPlugins
+@implementation AppDelegate
+{
+    NSMutableArray * _installs;
+}
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _installs = [NSMutableArray new];
+    }
+    return self;
+}
 
 - (BOOL)application:(NSApplication *)sender openFile:(NSString *)filename
 {
     // Activate App
     [NSApp activateIgnoringOtherApps:YES];
     
-#pragma mark - Check Params
-    
-    // Get basic info of opened document
-    NSString * extension = [filename pathExtension];
-    NSString * uti = (__bridge NSString *)(UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)(extension), NULL));
-    
-    // Find document type declaration
-    NSArray * types = [[NSBundle mainBundle] infoDictionary][@"CFBundleDocumentTypes"];
-    __block NSDictionary * typeDict = nil;
-    [types enumerateObjectsUsingBlock:^(NSDictionary* obj, NSUInteger idx, BOOL *stop) {
-        if([obj[@"LSItemContentTypes"] containsObject:uti])
-        {
-            typeDict = obj;
-            *stop = YES;
-        }
-    }];
-    
-    NSString * installFolder = typeDict[@"ISPInstallPath"];
-    
-    if([installFolder length]==0)
-        return NO;
-    
-    // Check wether the document we're opening is already in the destination folder
-    NSString * installPath = [[installFolder stringByExpandingTildeInPath] stringByAppendingPathComponent:[filename lastPathComponent]];
-    if([filename isEqualToString:installPath])
+    PluginInstall * install = [[PluginInstall alloc] initWithFile:filename delegate:self];
+    [_installs addObject:install];
+    BOOL res = install!=nil;
+    [install performSelector:@selector(install) withObject:nil afterDelay:0];
+    return res;
+}
+
+- (void) installFinished:(PluginInstall*)install
+{
+    [_installs removeObject:install];
+    if([_installs count]==0)
         [NSApp terminate:self];
-    
+}
+
+@end
+
+/****************************************************************************/
+#pragma mark -
+
+@implementation PluginInstall
+{
+    id<PluginInstallDelegate> _delegate;
+    NSString * _filename;
+    NSString * _uti;
+    NSString * _installFolder;
+    NSString * _installPath;
+}
+
+- (id) initWithFile:(NSString*)filename delegate:(id<PluginInstallDelegate>)delegate
+{
+    self = [super init];
+    if (self) {
+        _filename = filename;
+        _delegate = delegate;
+        
+#pragma mark - Check Params
+        
+        // Get basic info of opened document
+        _uti = (__bridge NSString *)(UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)([filename pathExtension]), NULL));
+        
+        // Find document type declaration
+        NSArray * types = [[NSBundle mainBundle] infoDictionary][@"CFBundleDocumentTypes"];
+        __block NSDictionary * typeDict = nil;
+        [types enumerateObjectsUsingBlock:^(NSDictionary* obj, NSUInteger idx, BOOL *stop) {
+            if([obj[@"LSItemContentTypes"] containsObject:_uti])
+            {
+                typeDict = obj;
+                *stop = YES;
+            }
+        }];
+        
+        _installFolder = typeDict[@"ISPInstallPath"];
+        
+        if([_installFolder length]==0)
+            return nil;
+        
+    }
+    return self;
+}
+
+- (void) install
+{
+    // Check wether the document we're opening is already in the destination folder
+    _installPath = [[_installFolder stringByExpandingTildeInPath] stringByAppendingPathComponent:[_filename lastPathComponent]];
+    if([_filename isEqualToString:_installPath])
+    {
+        [_delegate installFinished:self];
+        return;
+    }
     
 #pragma mark - Move
     
     NSError * error;
     BOOL success;
-    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:installPath];
-
+    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:_installPath];
+    
     // Move the file
     if( ! fileExists )
     {
-        [NSAlert confirmMoveWithMessage:@"INSTALL_PLUGIN_%@_TYPE_%@"
-                        informativeText:@"FILE_WILL_BE_MOVED_TO_%@"
-                          defaultButton:@"BUTTON_INSTALL_%@"
-                               filename:filename
-                                    uti:uti
-                            installPath:installPath];
+        if(![self confirmMoveWithMessage:@"INSTALL_PLUGIN_%@_TYPE_%@"
+                         informativeText:@"FILE_WILL_BE_MOVED_TO_%@"
+                           defaultButton:@"BUTTON_INSTALL_%@"])
+        {
+            [_delegate installFinished:self];
+            return;
+        }
         
         // Move
-        success = [[NSFileManager defaultManager] moveItemAtPath:filename toPath:installPath error:&error];
+        success = [[NSFileManager defaultManager] moveItemAtPath:_filename toPath:_installPath error:&error];
     }
-
+    
     // File exists "now" : move failed, or we didn't attempt it
     if(fileExists || (!success && error.code == NSFileWriteFileExistsError))
     {
-        [NSAlert confirmMoveWithMessage:@"PREVIOUS_VERSION_OF_%@_OF_TYPE_%@_ALREADY_INSTALLED"
-                        informativeText:@"DO_YOU_WANT_TO_REPLACE_%@"
-                          defaultButton:@"BUTTON_REPLACE_%@"
-                               filename:filename
-                                    uti:uti
-                            installPath:installPath];
+        if(![self confirmMoveWithMessage:@"PREVIOUS_VERSION_OF_%@_OF_TYPE_%@_ALREADY_INSTALLED"
+                         informativeText:@"DO_YOU_WANT_TO_REPLACE_%@"
+                           defaultButton:@"BUTTON_REPLACE_%@"])
+        {
+            [_delegate installFinished:self];
+            return;
+        }
         
-        success = [[NSFileManager defaultManager] removeItemAtPath:installPath error:&error];
-        success &= [[NSFileManager defaultManager] moveItemAtPath:filename toPath:installPath error:&error];
+        success = [[NSFileManager defaultManager] removeItemAtPath:_installPath error:&error];
+        success &= [[NSFileManager defaultManager] moveItemAtPath:_filename toPath:_installPath error:&error];
     }
     
     // End with failure
     if(!success)
     {
         [[NSAlert alertWithError:error] runModal];
-        [NSApp terminate:self];
+        [_delegate installFinished:self];
+        return;
     }
-    
     
 #pragma mark - Done
     
-    [[NSWorkspace sharedWorkspace] selectFile:installPath inFileViewerRootedAtPath:nil];
+    [[NSWorkspace sharedWorkspace] selectFile:_installPath inFileViewerRootedAtPath:nil];
     
-    [NSApp terminate:self];
-    return YES;
+    [_delegate installFinished:self];
+    return;
 }
-
-@end
 
 /****************************************************************************/
 #pragma mark - UI Code \o/
 
-@implementation NSAlert (InstallSystemPlugins)
-
-+ (NSInteger) confirmMoveWithMessage:(NSString*)messageText
-                     informativeText:(NSString*)informativeText
-                       defaultButton:(NSString*)defaultButton
-                            filename:(NSString*)filename
-                                 uti:(NSString*)uti
-                         installPath:(NSString*)installPath
+- (BOOL) confirmMoveWithMessage:(NSString*)messageText
+                informativeText:(NSString*)informativeText
+                  defaultButton:(NSString*)defaultButton
 {
-    NSString * displayName = [[[NSFileManager defaultManager] displayNameAtPath:filename] stringByDeletingPathExtension];
-    NSString * typeDescription = (__bridge NSString *)(UTTypeCopyDescription((__bridge CFStringRef)(uti)));
-
-    NSAlert * alert = [self alertWithMessageText:[NSString stringWithFormat:NSLocalizedString(messageText,nil),displayName, typeDescription]
-                                   defaultButton:[NSString stringWithFormat:NSLocalizedString(defaultButton, nil), displayName]
-                                 alternateButton:NSLocalizedString(@"BUTTON_REVEAL_DESTINATION", nil)
-                                     otherButton:NSLocalizedString(@"CANCEL_BUTTON", nil)
-                       informativeTextWithFormat:[NSString stringWithFormat:NSLocalizedString(informativeText, nil), installPath],nil];
-
+    NSString * displayName = [[[NSFileManager defaultManager] displayNameAtPath:_filename] stringByDeletingPathExtension];
+    NSString * typeDescription = (__bridge NSString *)(UTTypeCopyDescription((__bridge CFStringRef)(_uti)));
+    
+    NSAlert * alert = [NSAlert alertWithMessageText:[NSString stringWithFormat:NSLocalizedString(messageText,nil),displayName, typeDescription]
+                                      defaultButton:[NSString stringWithFormat:NSLocalizedString(defaultButton, nil), displayName]
+                                    alternateButton:NSLocalizedString(@"BUTTON_REVEAL_DESTINATION", nil)
+                                        otherButton:NSLocalizedString(@"CANCEL_BUTTON", nil)
+                          informativeTextWithFormat:[NSString stringWithFormat:NSLocalizedString(informativeText, nil), _installPath],nil];
+    
     // Draw Icon
-    NSDictionary * typeDeclaration = (__bridge NSDictionary *)(UTTypeCopyDeclaration((__bridge CFStringRef)(uti)));
+    NSDictionary * typeDeclaration = (__bridge NSDictionary *)(UTTypeCopyDeclaration((__bridge CFStringRef)(_uti)));
     NSString * bundleID = typeDeclaration[(id)kCFBundleIdentifierKey];
     NSString * appPath;
     if (bundleID)
@@ -148,31 +200,27 @@ int main(int argc, char *argv[])
     if(appPath==nil)
         appPath = [[NSBundle mainBundle] bundlePath];
     NSImage * appIcon = [[NSWorkspace sharedWorkspace] iconForFile:appPath];
-    NSImage * fileIcon = [[NSWorkspace sharedWorkspace] iconForFile:filename];
+    NSImage * fileIcon = [[NSWorkspace sharedWorkspace] iconForFile:_filename];
     NSBitmapImageRep* bitmap = [fileIcon representations][0];
     CGSize size = CGSizeMake(bitmap.pixelsWide,bitmap.pixelsHigh);
     fileIcon.size = appIcon.size = size;
     [fileIcon lockFocus];
     [appIcon drawInRect:NSMakeRect(size.width/2, 0,size.width/2, size.height/2) fromRect:NSMakeRect(0, 0, size.width, size.height) operation:NSCompositeSourceOver fraction:1];
     [fileIcon unlockFocus];
-
+    
     alert.icon = fileIcon;
     alert.showsHelp = YES;
-    alert.delegate = alert;
-    
+    alert.delegate = self;
     
     // Run
     NSInteger result = [alert runModal];
-    
-    if(result==NSAlertAlternateReturn)
-    {
-        [[NSWorkspace sharedWorkspace] selectFile:[installPath stringByDeletingLastPathComponent] inFileViewerRootedAtPath:nil];
-        [NSApp terminate:self];
+    switch (result) {
+        case NSAlertAlternateReturn: [[NSWorkspace sharedWorkspace] selectFile:[_installPath stringByDeletingLastPathComponent] inFileViewerRootedAtPath:nil]; // no break
+        case NSAlertOtherReturn: [_delegate installFinished:self];
+            return NO;
+        default:
+            return YES;;
     }
-
-    if(result==NSAlertOtherReturn)
-        [NSApp terminate:self];
-    return result;
 }
 
 - (BOOL)alertShowHelp:(NSAlert *)alert

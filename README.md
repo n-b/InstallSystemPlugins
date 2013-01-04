@@ -20,7 +20,7 @@ Just [download it](https://github.com/n-b/InstallSystemPlugins/raw/master/Archiv
 * Xcode Color Themes (`.dvcolortheme`) → `~/Library/Developer/Xcode/UserData/FontAndColorThemes/`
 * Mail.app Plugins (`.mailbundle`) → `~/Library/Mail/Bundles/`
 
-### Why not *XXX plugin yype* ?
+### Why not *XXX plugin type* ?
 
 Mac OS X (as of ML) correctly installs other plugins when double-clicked: 
 * Preference Panels (handled by *System Preferences*)

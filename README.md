@@ -3,7 +3,7 @@ InstallSystemPlugins
 
 Easily install Mac OS X plugins.
 
->A long time ago, in System 7, one could double-click a system extension or a plugin, and the Finder would simply copy it to the correct location in the System Folder.
+A long time ago, in System 7, one could double-click a system extension or a plugin, and the Finder would simply copy it to the correct location in the System Folder.
 
 This tool makes this feature available again.
 

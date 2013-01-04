@@ -7,8 +7,8 @@ Easily install Mac OS X plugins.
 
 This tool is an attempt to recreate this.
 
-Which types of plugins can it install ?
----------------------------------------
+### Which types of plugins can it install ?
+
 
 * Color Pickers (`.colorPicker`) → `~/Library/ColorPickers/`
 * QuickLook Generators (`.qlgenerator`) → `~/Library/QuickLook/`
@@ -16,8 +16,7 @@ Which types of plugins can it install ?
 * Xcode Color Themes (`.dvcolortheme`) → `~/Library/Developer/Xcode/UserData/FontAndColorThemes/`
 * Mail.app Plugins (`.mailbundle`) → `~/Library/Mail/Bundles/`
 
-Why not *XXX plugin yype* ?
----------------------------
+### Why not *XXX plugin yype* ?
 
 Mac OS X (as of ML) correctly installs other plugins when double-clicked: 
 * Preference Panels (handled by *System Preferences*)
@@ -27,17 +26,14 @@ Mac OS X (as of ML) correctly installs other plugins when double-clicked:
 * Widgets (handled by *Widget Installer* - it’s in Dock.app)
 * Safari extensions (handled by *Safari*)
 
-Why not Internet plugins ?
---------------------------
+### Why not Internet plugins ?
 
 It’s 2013.
 
-Why not Quicktime plugins ?
----------------------------
+### Why not Quicktime plugins ?
 
 See previous answer.
 
-Why not *XXX plugin type* ?
----------------------------
+### Why not *XXX plugin type* ?
 
 I don’t know. If you think it should, [ask me](https://github.com/n-b/InstallSystemPlugins/issues).

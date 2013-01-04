@@ -37,3 +37,21 @@ See previous answer.
 ### Why not *XXX plugin type* ?
 
 I don’t know. If you think it should, [ask me](https://github.com/n-b/InstallSystemPlugins/issues).
+
+---
+
+A few great plugins sources :
+
+* Quick Look Plugins : 
+	* http://www.quicklookplugins.com
+	* http://www.qlplugins.com
+* Xcode Snippets
+	* https://github.com/n-b/Xcode-Snippets
+	* http://www.icodeblog.com/2011/12/06/using-xcode-4-snippets/
+	* https://github.com/scelis/Xcode-CodeSnippets
+* Xcode color themes
+	* http://amychr.wordpress.com/2011/06/05/xcode-color-themes/
+	* http://nearthespeedoflight.com/article/xcode_4_colour_themes
+* Color Pickers :
+	* [DeveloperColorPicker](http://panic.com/~wade/picker/)
+	* [HexColorPicker](http://wafflesoftware.net/hexpicker/)

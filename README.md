@@ -7,6 +7,10 @@ Easily install Mac OS X plugins.
 
 This tool is an attempt to recreate this.
 
+### How does it work ?
+
+Just [download it](https://github.com/n-b/InstallSystemPlugins/raw/master/Archive/InstallSystemPlugins.zip) and forget about it. It will launch when you double-click on a supported plugin.
+
 ### Which types of plugins can it install ?
 
 

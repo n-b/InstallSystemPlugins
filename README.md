@@ -46,6 +46,12 @@ I don’t know. If you think it should, [ask me](https://github.com/n-b/InstallS
 
 A few great plugins sources :
 
+* Edit app-associations in System Preference-Panes :
+	* [RCDefaultApp](http://www.rubicode.com/Software/RCDefaultApp/) (Freeware)
+	* [SwiftDefaultApps](https://github.com/Lord-Kamina/SwiftDefaultApps/) (Open Souce version) 
+	* [Magic Launch](https://www.oneperiodic.com/products/magiclaunch/) (Shareware)
+* Register your own URL protocol scheme:
+	* [LinCastor](https://onflapp.wordpress.com/lincastor/)
 * Quick Look Plugins : 
 	* http://www.quicklookplugins.com
 	* http://www.qlplugins.com
